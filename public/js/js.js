@@ -17,6 +17,7 @@ var ProcessController = {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
 			success: function(response){
+				console.log(response);
 				if(response === false){
 					$('.notification').append("<div class='error'>Không thể có số đối xứng từ số: "+ data +"</div>");
 					$('#number-check').val('');

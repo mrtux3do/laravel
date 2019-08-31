@@ -10,6 +10,7 @@ class ProcessController extends Controller{
 	}
 
 	public function checkNumber(Request $request){
+		$number = '';
 		if($request->ajax()){
 			$data = $request->get('data');
 			$arr_data = str_split($data, 1);
@@ -26,6 +27,7 @@ class ProcessController extends Controller{
 					$arr_count = array_count_values($arr_data);
 					//get half number
 					$number = $this->__processNumber($arr_count, $arr_unique);
+					if(!$number) return response()->json(false);
 					$number .= strrev($number);
 					return response()->json($number);
 					break;
@@ -43,11 +45,8 @@ class ProcessController extends Controller{
 							$check_number = $check_number + 1;
 							$mid_number = $val;
 							$value_mid_number = $key;
-							Log::debug(print_r($val, true));
-							Log::debug(print_r($key, true));
 						}
 					}
-					Log::debug(print_r($check_number, true));
 					if($check_number > 1) return response()->json(false);
 
 					if($mid_number == 1){
@@ -83,7 +82,7 @@ class ProcessController extends Controller{
 		foreach ($arr_count as &$val){
 			//for only case = 0
 			if(($val % 2) != 0){
-				return response()->json(false);
+				return false;
 			}
 			$val = $val/2;
 		}
