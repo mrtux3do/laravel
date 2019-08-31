@@ -9,7 +9,17 @@
 	<div>
 		<label>Nhập số cần kiểm tra:</label>
 		<input type="number" name="number" id="number-check" min="0">
-		<button type="button" id="btn-check" onclick="ProcessController.getValue();">Kiểm tra</button>
+		<button type="button" class="btn-primary" id="btn-check" onclick="ProcessController.getValue();">Kiểm tra</button>
 	</div>
-	<div class="notification"></div>
+	<div class="notification">
+		<div class="lazyload">
+			<img src="{{asset('img/station-loading.gif') }}">
+		</div>
+	</div>
+</div>
+<div class="alert">
+	<div class="content-alert">
+		<span>Bạn phải nhập số để kiểm tra!</span>
+		<button class="btn-primary" onclick="ProcessController.back();">Quay Lại</button>
+	</div>
 </div>

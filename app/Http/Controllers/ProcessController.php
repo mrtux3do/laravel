@@ -43,8 +43,11 @@ class ProcessController extends Controller{
 							$check_number = $check_number + 1;
 							$mid_number = $val;
 							$value_mid_number = $key;
+							Log::debug(print_r($val, true));
+							Log::debug(print_r($key, true));
 						}
 					}
+					Log::debug(print_r($check_number, true));
 					if($check_number > 1) return response()->json(false);
 
 					if($mid_number == 1){

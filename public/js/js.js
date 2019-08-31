@@ -1,10 +1,12 @@
 var ProcessController = {
 	getValue : function(){
+		$('.lazyload').show();
 		$('.error').remove();
 		$('.success').remove();
 		var data = $('#number-check').val();
 		if(!data){
-			alert('Bạn phải nhập số để kiểm tra');
+			$('.lazyload').hide();
+			$('.alert').show();
 			return false;
 		}
 		$.ajax({
@@ -18,11 +20,17 @@ var ProcessController = {
 				if(response === false){
 					$('.notification').append("<div class='error'>Không thể có số đối xứng từ số: "+ data +"</div>");
 					$('#number-check').val('');
+					$('.lazyload').hide();
 				} else {
 					$('.notification').append("<div class='success'>Số đối xứng lớn nhất từ số "+ data +" là: " + response +" </div>");
 					$('#number-check').val('');
+					$('.lazyload').hide();
 				}
 			}
 		});
+	},
+
+	back : function(){
+		$('.alert').hide();
 	}
 }
