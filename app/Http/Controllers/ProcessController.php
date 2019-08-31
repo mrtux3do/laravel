@@ -10,8 +10,6 @@ class ProcessController extends Controller{
 	}
 
 	public function checkNumber(Request $request){
-		$result= array();
-		$number = '';
 		if($request->ajax()){
 			$data = $request->get('data');
 			$arr_data = str_split($data, 1);
@@ -27,7 +25,7 @@ class ProcessController extends Controller{
 					//Dem so lan xuat hien cua cac phan tu trong mang
 					$arr_count = array_count_values($arr_data);
 					//get half number
-					$number = $this->__processNumber($arr_count);
+					$number = $this->__processNumber($arr_count, $arr_unique);
 					$number .= strrev($number);
 					return response()->json($number);
 					break;
@@ -51,7 +49,7 @@ class ProcessController extends Controller{
 
 					if($mid_number == 1){
 						unset($arr_count[$value_mid_number]);
-						$number = $this->__processNumber($arr_count);
+						$number = $this->__processNumber($arr_count, $arr_unique);
 						$strrev_number = strrev($number);
 						$number .= $value_mid_number;
 						$number .= $strrev_number;
@@ -59,7 +57,7 @@ class ProcessController extends Controller{
 					}
 
 					$arr_count[$value_mid_number] = $mid_number - 1;
-					$number = $this->__processNumber($arr_count);
+					$number = $this->__processNumber($arr_count, $arr_unique);
 					$strrev_number = strrev($number);
 					$number .= $value_mid_number;
 					$number .= $strrev_number;
@@ -77,6 +75,8 @@ class ProcessController extends Controller{
 	*/
 
 	private function __processNumber($arr_count, $arr_unique){
+		$result= array();
+		$number = '';
 		foreach ($arr_count as &$val){
 			//for only case = 0
 			if(($val % 2) != 0){
@@ -95,7 +95,6 @@ class ProcessController extends Controller{
 				}
 			}
 		}
-
 		//mang moi voi gia tri key & value
 		foreach($arr_count as $key => $obj){
 			$tmp = array();
