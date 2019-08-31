@@ -1,0 +1,36 @@
+.process{
+	font-family: 'Roboto', sans-serif;
+}
+
+.process #number-check{
+	width: 30%;
+	height: 45px;
+	outline: none;
+	border: 1px solid #72c5c9;
+	padding-left: 10px;
+}
+
+.process #btn-check{
+	line-height: 45px;
+	border: none;
+	background: #72c5c9;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
+}
+
+.error{
+	color: #fff;
+	background: red;
+	padding: 10px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.success{
+	color: #fff;
+	background: green;
+	padding: 10px;
+	text-align: center;
+	margin-top: 50px;
+}
